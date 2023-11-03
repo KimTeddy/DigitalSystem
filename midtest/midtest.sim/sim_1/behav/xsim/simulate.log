@@ -1,0 +1,4 @@
+Time resolution is 1 ps
+value=11111111111
+value=10011001100
+$stop called at time : 200 ns : File "C:/Xilinx/DigitalSystem/midtest/midtest.srcs/sim_1/new/tb_1.v" Line 16

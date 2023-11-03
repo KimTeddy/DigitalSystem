@@ -1,0 +1,41 @@
+module tb_add16;
+reg [15:0] a, b; 
+reg ci; 
+wire [15:0] s_add16; 
+wire co_add16;
+wire [15:0] s_cla16; 
+wire co_cla16;
+initial begin
+    a = 16'h0000;
+    b = 16'h0000;
+    ci = 1'b0; 
+    #100;
+    a = 16'hffff;
+    b = 16'h0001;
+    ci = 1'b0; 
+    #100;
+    a = 16'hffff;
+    b = 16'h0000;
+    ci = 1'b1; 
+    #100;
+    a = 16'h0ffe;
+    b = 16'h0001;
+    ci = 1'b1; 
+    #100;
+    a = 16'h1234;
+    b = 16'hedcb;
+    ci = 1'b0; 
+    #100;
+    a = 16'h1234;
+    b = 16'hedcb;
+    ci = 1'b1; 
+    #100;
+    a = 16'h00ff;
+    b = 16'hff00;
+    ci = 1'b0; 
+    #100;
+    $stop; 
+end
+add16 dut0(.a(a), .b(b), .ci(ci), .s(s_add16), .co(co_add16)); 
+cla16 dut1(.a(a), .b(b), .ci(ci), .s(s_cla16), .co(co_cla16), .po(), .go()); 
+endmodule

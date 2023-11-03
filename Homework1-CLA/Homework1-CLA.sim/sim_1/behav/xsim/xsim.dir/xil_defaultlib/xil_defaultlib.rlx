@@ -1,0 +1,9 @@
+0.7
+2020.2
+Oct 14 2022
+05:20:55
+C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.sim/sim_1/behav/xsim/glbl.v,1665704903,verilog,,,,glbl,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.srcs/sim_1/new/tb_cla4.v,1696845341,verilog,,,,tb_cla4,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.srcs/sources_1/new/cla4.v,1696665019,verilog,,C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.srcs/sources_1/new/cla_logic.v,,cla4,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.srcs/sources_1/new/cla_logic.v,1696666477,verilog,,C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.srcs/sources_1/new/pfa.v,,cll,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.srcs/sources_1/new/pfa.v,1695642026,verilog,,C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.srcs/sim_1/new/tb_cla4.v,,pfa,,,,,,,,

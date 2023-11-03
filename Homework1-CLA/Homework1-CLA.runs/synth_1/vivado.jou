@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Sat Oct  7 19:00:08 2023
+# Process ID: 15332
+# Current directory: C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.runs/synth_1
+# Command line: vivado.exe -log cla16.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cla16.tcl
+# Log file: C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.runs/synth_1/cla16.vds
+# Journal file: C:/Xilinx/DigitalSystem/Homework1-CLA/Homework1-CLA.runs/synth_1\vivado.jou
+# Running On: TeddyLaptop, OS: Windows, CPU Frequency: 2688 MHz, CPU Physical cores: 14, Host memory: 16855 MB
+#-----------------------------------------------------------
+source cla16.tcl -notrace
