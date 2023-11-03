@@ -10,7 +10,7 @@ reg [3:0] c_state, n_state;
 wire uart_start_pulse;
 wire change_en;
 
-reg [16:0] o;
+reg [9:0] o;
 parameter   SIZE = 868;
 //100MHz = 10ns -> 115200[bit/s] => [ns/bit] => 8680.555ns/10ns = 868 clk
 parameter   IDLE=4'b0, START=4'b1, 
