@@ -20,18 +20,17 @@ parameter   IDLE=4'b0, START=4'b1,
 
 always @(*) begin
     case (c_state)
-        IDLE:   begin   if(uart_start_pulse) n_state=START; 
-                        else  n_state=IDLE; uart_txd=1'b1;        tx_busy=1'b0;  end
-        START:  begin n_state=BIT0;     uart_txd=1'b0;            tx_busy=1'b1; end
-        BIT0:   begin n_state=BIT1;     uart_txd=uart_tx_data[7]; tx_busy=1'b1; end
-        BIT1:   begin n_state=BIT2;     uart_txd=uart_tx_data[6]; tx_busy=1'b1; end
-        BIT2:   begin n_state=BIT3;     uart_txd=uart_tx_data[5]; tx_busy=1'b1; end
-        BIT3:   begin n_state=BIT4;     uart_txd=uart_tx_data[4]; tx_busy=1'b1; end
-        BIT4:   begin n_state=BIT5;     uart_txd=uart_tx_data[3]; tx_busy=1'b1; end
-        BIT5:   begin n_state=BIT6;     uart_txd=uart_tx_data[2]; tx_busy=1'b1; end
-        BIT6:   begin n_state=BIT7;     uart_txd=uart_tx_data[1]; tx_busy=1'b1; end
-        BIT7:   begin n_state=STOP;     uart_txd=uart_tx_data[0]; tx_busy=1'b1; end
-        default:begin n_state=IDLE;     uart_txd=1'b1;            tx_busy=1'b1; end//STOP
+        IDLE:   begin if(uart_start_pulse) n_state=START; else n_state=IDLE; end
+        START:  begin if(change_en) n_state=BIT0; else n_state=START; end
+        BIT0:   begin if(change_en) n_state=BIT1; else n_state=BIT0;  end
+        BIT1:   begin if(change_en) n_state=BIT2; else n_state=BIT1;  end
+        BIT2:   begin if(change_en) n_state=BIT3; else n_state=BIT2;  end
+        BIT3:   begin if(change_en) n_state=BIT4; else n_state=BIT3;  end
+        BIT4:   begin if(change_en) n_state=BIT5; else n_state=BIT4;  end
+        BIT5:   begin if(change_en) n_state=BIT6; else n_state=BIT5;  end
+        BIT6:   begin if(change_en) n_state=BIT7; else n_state=BIT6;  end
+        BIT7:   begin if(change_en) n_state=STOP; else n_state=BIT7;  end
+        default:begin if(change_en) n_state=IDLE; else n_state=STOP;  end//STOP
     endcase
 end
 
