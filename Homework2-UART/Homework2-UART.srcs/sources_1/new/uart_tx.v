@@ -63,6 +63,6 @@ always @(posedge clk or posedge rst) begin
 end
 assign change_en = (o == SIZE-1) ? 1'b1 : 1'b0;
 
-assign uart_start_pulse = uart_tx_en; //for simulation
-//debounce debounce_inst (clk, rst, uart_tx_en, , uart_start_pulse); //for kit
+//assign uart_start_pulse = uart_tx_en; //for simulation
+debounce debounce_inst (clk, rst, uart_tx_en, , uart_start_pulse); //for kit
 endmodule
