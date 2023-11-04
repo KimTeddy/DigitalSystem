@@ -16,12 +16,12 @@ initial begin
         rst = 1;
         uart_tx_en = 0;
         uart_tx_data = 0;
-
+        #10000
         uart_tx_data = 8'h56;
         #10; rst = 0;
-        #10;  uart_tx_en = 1;
-        #10;  uart_tx_en = 0;
-        #100000;
+        #10; uart_tx_en = 1;
+        #10; uart_tx_en = 0;
+        #1000000;
         $stop;
 end
 uart_tx tx1(clk,rst,uart_tx_en,uart_tx_data,tx_busy,uart_txd);
