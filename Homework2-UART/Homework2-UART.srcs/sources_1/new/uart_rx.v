@@ -6,7 +6,7 @@ module uart_rx (
     output reg [7:0] uart_rx_data //수신한 8비트 data
 );
 reg [3:0] c_state, n_state;
-wire uart_start_pulse;
+reg uart_start_pulse;
 wire change_en;
 
 reg [9:0] o;
@@ -35,8 +35,8 @@ end
 
 always @(*) begin
     case (c_state)
-        IDLE:   begin                           rx_busy=1'b0; end
-        START:  begin                           rx_busy=1'b1; end
+        IDLE:   begin uart_start_pulse=1'b0;    rx_busy=1'b0; end
+        START:  begin uart_start_pulse=1'b1;    rx_busy=1'b1; end
         BIT0:   begin uart_rx_data[0]=uart_rxd; rx_busy=1'b1; end
         BIT1:   begin uart_rx_data[1]=uart_rxd; rx_busy=1'b1; end
         BIT2:   begin uart_rx_data[2]=uart_rxd; rx_busy=1'b1; end
@@ -45,7 +45,7 @@ always @(*) begin
         BIT5:   begin uart_rx_data[5]=uart_rxd; rx_busy=1'b1; end
         BIT6:   begin uart_rx_data[6]=uart_rxd; rx_busy=1'b1; end
         BIT7:   begin uart_rx_data[7]=uart_rxd; rx_busy=1'b1; end
-        default:begin                           rx_busy=1'b1; end//STOP
+        default:begin uart_start_pulse=1'b0;    rx_busy=1'b1; end//STOP
     endcase
 end
 

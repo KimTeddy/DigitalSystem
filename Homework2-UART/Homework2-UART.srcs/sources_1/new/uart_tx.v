@@ -38,14 +38,14 @@ always @(*) begin
     case (c_state)
         IDLE:   begin uart_txd=1'b1;            tx_busy=1'b0; end
         START:  begin uart_txd=1'b0;            tx_busy=1'b1; end
-        BIT0:   begin uart_txd=uart_tx_data[7]; tx_busy=1'b1; end
-        BIT1:   begin uart_txd=uart_tx_data[6]; tx_busy=1'b1; end
-        BIT2:   begin uart_txd=uart_tx_data[5]; tx_busy=1'b1; end
-        BIT3:   begin uart_txd=uart_tx_data[4]; tx_busy=1'b1; end
-        BIT4:   begin uart_txd=uart_tx_data[3]; tx_busy=1'b1; end
-        BIT5:   begin uart_txd=uart_tx_data[2]; tx_busy=1'b1; end
-        BIT6:   begin uart_txd=uart_tx_data[1]; tx_busy=1'b1; end
-        BIT7:   begin uart_txd=uart_tx_data[0]; tx_busy=1'b1; end
+        BIT0:   begin uart_txd=uart_tx_data[0]; tx_busy=1'b1; end
+        BIT1:   begin uart_txd=uart_tx_data[1]; tx_busy=1'b1; end
+        BIT2:   begin uart_txd=uart_tx_data[2]; tx_busy=1'b1; end
+        BIT3:   begin uart_txd=uart_tx_data[3]; tx_busy=1'b1; end
+        BIT4:   begin uart_txd=uart_tx_data[4]; tx_busy=1'b1; end
+        BIT5:   begin uart_txd=uart_tx_data[5]; tx_busy=1'b1; end
+        BIT6:   begin uart_txd=uart_tx_data[6]; tx_busy=1'b1; end
+        BIT7:   begin uart_txd=uart_tx_data[7]; tx_busy=1'b1; end
         default:begin uart_txd=1'b1;            tx_busy=1'b1; end//STOP
     endcase
 end
