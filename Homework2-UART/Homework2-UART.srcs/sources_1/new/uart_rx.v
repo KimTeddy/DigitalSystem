@@ -6,7 +6,7 @@ module uart_rx (
     output reg [7:0] uart_rx_data //수신한 8비트 data
 );
 reg [3:0] c_state, n_state;
-reg uart_start_pulse;
+//reg uart_start_pulse;
 wire change_en;
 
 reg [9:0] o;
@@ -35,8 +35,8 @@ end
 
 always @(*) begin
     case (c_state)
-        IDLE:   begin uart_start_pulse=1'b0;    rx_busy=1'b0; end
-        START:  begin uart_start_pulse=1'b1;    rx_busy=1'b1; end
+        IDLE:   begin                           rx_busy=1'b0; end
+        START:  begin                           rx_busy=1'b1; end
         BIT0:   begin uart_rx_data[0]=uart_rxd; rx_busy=1'b1; end
         BIT1:   begin uart_rx_data[1]=uart_rxd; rx_busy=1'b1; end
         BIT2:   begin uart_rx_data[2]=uart_rxd; rx_busy=1'b1; end
@@ -45,7 +45,7 @@ always @(*) begin
         BIT5:   begin uart_rx_data[5]=uart_rxd; rx_busy=1'b1; end
         BIT6:   begin uart_rx_data[6]=uart_rxd; rx_busy=1'b1; end
         BIT7:   begin uart_rx_data[7]=uart_rxd; rx_busy=1'b1; end
-        default:begin uart_start_pulse=1'b0;    rx_busy=1'b1; end//STOP
+        default:begin                           rx_busy=1'b1; end//STOP
     endcase
 end
 
@@ -57,9 +57,9 @@ end
 always @(posedge clk or posedge rst) begin
     if(rst) o <= 0;
     else if(o == SIZE-1) o <= 0;
-    else if(uart_start_pulse) o <= 0;
+    //else if(uart_start_pulse) o <= 0;
     else o <= o + 1;
 end
 assign change_en = (o == SIZE-1) ? 1'b1 : 1'b0;
-
+//assign uart_start_pulse = change_en;
 endmodule
