@@ -61,10 +61,14 @@ always @(posedge clk or posedge rst) begin
     else o <= o + 1;
 end
 
-always @(rst) begin
-    if(rst) uart_rx_data = 8'b0;
-    else uart_rx_data = uart_rx_data;
-end
+// always @(*) begin
+//     if(rst) uart_rx_data <= 8'b0;
+// end
+
+// always @(posedge clk, posedge rst) begin
+//     if(rst) begin c_state <= IDLE; uart_rx_data <= 8'b0; end
+//     else    c_state <= n_state;
+// end
 
 assign change_en = (o == SIZE-1) ? 1'b1 : 1'b0;
 //assign uart_start_pulse = change_en;

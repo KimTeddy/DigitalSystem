@@ -13,5 +13,4 @@ module uart_top(
 );
 uart_tx tx_inst(clk, rst, uart_tx_en, uart_tx_data, , uart_txd);
 uart_rx rx_inst(clk, rst, uart_rxd, , uart_rx_data);
-
 endmodule
