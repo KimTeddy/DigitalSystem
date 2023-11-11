@@ -3,6 +3,6 @@
 Oct 14 2022
 05:20:55
 C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.sim/sim_1/behav/xsim/glbl.v,1665704903,verilog,,,,glbl,,,,,,,,
-C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sources_1/new/uart_rx.v,1699011045,verilog,,C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sources_1/new/uart_tx.v,,uart_rx,,,,,,,,
-C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sources_1/new/uart_top.v,1699009343,verilog,,,,uart_top,,,,,,,,
-C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sources_1/new/uart_tx.v,1699012842,verilog,,C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sources_1/new/uart_top.v,,uart_tx,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sim_1/new/uart_rx_tb.v,1699275324,verilog,,,,uart_rx_tb,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sources_1/new/uart_rx.v,1699275952,verilog,,C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sources_1/new/uart_tx.v,,uart_rx,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sources_1/new/uart_tx.v,1699274389,verilog,,C:/Xilinx/DigitalSystem/Homework2-UART/Homework2-UART.srcs/sim_1/new/uart_rx_tb.v,,uart_tx,,,,,,,,
