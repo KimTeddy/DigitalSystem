@@ -14,7 +14,7 @@ assign min1_ovf = (min1 == 5) ? 1'b1 : 1'b0;
 assign hrs0_ovf = (hrs0 == 9) ? 1'b1 : 1'b0;
 assign hrs1_ovf = (hrs1 == 5) ? 1'b1 : 1'b0;
 
-always @(posedge clock_en or posedge rst) begin//xx:xx:xs
+always @(posedge clock_en or posedge rst) begin//XX:XX:Xs
     if (rst)
         sec0 <= 4'b0;
     else if (clock_en) begin
@@ -22,7 +22,7 @@ always @(posedge clock_en or posedge rst) begin//xx:xx:xs
         else sec0 <= sec0 + 1;
     end
 end
-always @(negedge sec0_ovf or posedge rst) begin//xx:xx:sx
+always @(negedge sec0_ovf or posedge rst) begin//XX:XX:sX
     if (rst)
         sec1 <= 4'b0;
     else if (clock_en) begin
@@ -30,7 +30,7 @@ always @(negedge sec0_ovf or posedge rst) begin//xx:xx:sx
         else sec1 <= sec1 + 1;
     end
 end
-always @(negedge sec1_ovf or posedge rst) begin//xx:xm:xx
+always @(negedge sec1_ovf or posedge rst) begin//XX:Xm:XX
     if (rst)
         min0 <= 4'b0;
     else if (clock_en) begin
@@ -38,7 +38,7 @@ always @(negedge sec1_ovf or posedge rst) begin//xx:xm:xx
         else min0 <= min0 + 1;
     end
 end
-always @(negedge min0_ovf or posedge rst) begin//xx:mx:xx
+always @(negedge min0_ovf or posedge rst) begin//XX:mX:XX
     if (rst)
         min1 <= 4'b0;
     else if (clock_en) begin
