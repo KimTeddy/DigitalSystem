@@ -2,9 +2,9 @@ module clock(
 input clk_6mhz,
 input rst,
 input clock_en,
-input digit,
+input [5:0] digit,//바꿀 숫자
 input up, down,
-output reg sec0, sec1, min0, min1, hrs0, hrs1
+output reg [3:0] sec0, sec1, min0, min1, hrs0, hrs1
     );
 
 assign sec0_ovf = (sec0 == 9) ? 1'b1 : 1'b0;
@@ -14,7 +14,7 @@ assign min1_ovf = (min1 == 5) ? 1'b1 : 1'b0;
 assign hrs0_ovf = (hrs0 == 9) ? 1'b1 : 1'b0;
 assign hrs1_ovf = (hrs1 == 5) ? 1'b1 : 1'b0;
 
-always @(posedge clk_6mhz or posedge rst) begin//xx:xx:xs
+always @(posedge clock_en or posedge rst) begin//xx:xx:xs
     if (rst)
         sec0 <= 4'b0;
     else if (clock_en) begin
