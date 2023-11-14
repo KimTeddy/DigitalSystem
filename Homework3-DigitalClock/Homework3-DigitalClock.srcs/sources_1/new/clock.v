@@ -5,7 +5,7 @@ input clock_en,
 input [5:0] digit,//바꿀 숫자
 input up, down,
 output reg [3:0] sec0, sec1, min0, min1, hrs0, hrs1
-    );//asdfasdf
+    );
 
 assign sec0_ovf = (sec0 == 9) ? 1'b1 : 1'b0;
 assign sec1_ovf = (sec1 == 5) ? 1'b1 : 1'b0;
