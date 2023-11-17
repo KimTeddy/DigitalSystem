@@ -44,23 +44,35 @@ dec7 dec_hrs1_inst (hrs1, hrs1_out);
 //digit[5:0] generation code here with “left” or “right” button
 //digit[5:0] = 100000,010000,001000,000100,000010,000001,100000,010000……
 
-wire[7:0]a;
-wire[2:0]s;
-reg[7:0]o;
+// wire[7:0]a;
+// wire[2:0]s;
+// reg[7:0]o;
 
-always @ (a or s) begin //right rotation
-    case (s)
-        3'b000: o = a;
-        3'b001: o = {a[0], a[7:1]};
-        3'b010: o = {a[1:0], a[7:2]};
-        3'b011: o = {a[2:0], a[7:3]};
-        3'b100: o = {a[3:0], a[7:4]};
-        3'b101: o = {a[4:0], a[7:5]};
-        3'b110: o = {a[5:0], a[7:6]};
-        default: o = {a[6:0], a[7]};
-    endcase
+// always @ (right) begin //right rotation
+//     case (s)
+//         3'b000: o = a;
+//         3'b001: o = {  a[0], a[7:1]};
+//         3'b010: o = {a[1:0], a[7:2]};
+//         3'b011: o = {a[2:0], a[7:3]};
+//         3'b100: o = {a[3:0], a[7:4]};
+//         3'b101: o = {a[4:0], a[7:5]};
+//         3'b110: o = {a[5:0], a[7:6]};
+//         default:o = {a[6:0], a[7]  };
+//     endcase
+// end
+
+always @(posedge clk_6mhz, posedge rst) begin
+    if(rst) digit <= 6'b100000;
+    else if(left) digit <= {digit[0], digit[5:1]};
+    else if(right) digit <= {digit[4:0], digit[5]};
 end
 
+// always @(*) begin
+//     if(right) digit = {digit[0], digit[5:1]};
+// end
+// always @(*) begin
+//     if(left) digit = {digit[4:0], digit[5]};
+// end
 
 //seg_com[5:0] generation code here (shifts 600 times per second)
 //seg_com[5:0] = 100000,010000,001000,000100,000010,000001,100000,010000……
