@@ -24,7 +24,7 @@ assign rst = reset_poweron | (~locked);
 
 //1초에 한 번 발생하는 clock enable 신호
 //for speed control: SIZE=6000000(x1), SIZE=600000(x10), SIZE=6000(x1000)
-gen_counter_en #(.SIZE(600)) gen_clock_en_inst (clk_6mhz, rst, clock_en);
+gen_counter_en #(.SIZE(6000000)) gen_clock_en_inst (clk_6mhz, rst, clock_en);
 //실제 시계 값
 clock clock_inst (clk_6mhz, rst, clock_en, digit, up, down, sec0, sec1, min0, min1, hrs0, hrs1); 
 

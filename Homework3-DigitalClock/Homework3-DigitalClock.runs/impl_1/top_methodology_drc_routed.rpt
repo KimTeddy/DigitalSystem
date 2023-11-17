@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Fri Nov 17 19:51:42 2023
+| Date         : Fri Nov 17 20:57:30 2023
 | Host         : TeddyLaptop running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -97,14 +97,14 @@ Related violations: <none>
 
 LUTAR-1#1 Warning
 LUT drives async reset alert  
-LUT cell gen_clock_en_inst/o[31]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) gen_clock_en_inst/o_reg[25]/CLR, gen_clock_en_inst/o_reg[26]/CLR,
+LUT cell debounce_btn0_inst/sec0[3]_i_3, with 2 or more inputs, drives asynchronous preset/clear pin(s) gen_clock_en_inst/o_reg[25]/CLR, gen_clock_en_inst/o_reg[26]/CLR,
 gen_clock_en_inst/o_reg[27]/CLR, gen_clock_en_inst/o_reg[28]/CLR,
 gen_clock_en_inst/o_reg[29]/CLR, gen_clock_en_inst/o_reg[2]/CLR,
 gen_clock_en_inst/o_reg[30]/CLR, gen_clock_en_inst/o_reg[31]/CLR,
 gen_clock_en_inst/o_reg[3]/CLR, gen_clock_en_inst/o_reg[4]/CLR,
 gen_clock_en_inst/o_reg[5]/CLR, gen_clock_en_inst/o_reg[6]/CLR,
 gen_clock_en_inst/o_reg[7]/CLR, gen_clock_en_inst/o_reg[8]/CLR,
-gen_clock_en_inst/o_reg[9]/CLR (the first 15 of 84 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+gen_clock_en_inst/o_reg[9]/CLR (the first 15 of 88 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 TIMING-20#1 Warning
