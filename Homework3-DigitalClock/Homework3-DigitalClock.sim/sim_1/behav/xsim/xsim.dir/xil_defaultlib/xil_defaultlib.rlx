@@ -1,0 +1,10 @@
+0.7
+2020.2
+Oct 14 2022
+05:20:55
+C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.gen/sources_1/ip/gen_clock_en/gen_clock_en.v,1699941464,verilog,,C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/clock.v,,gen_clock_en,,,../../../../Homework3-DigitalClock.gen/sources_1/ip/gen_clock_en,,,,,
+C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.gen/sources_1/ip/gen_clock_en/gen_clock_en_clk_wiz.v,1699941464,verilog,,C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.gen/sources_1/ip/gen_clock_en/gen_clock_en.v,,gen_clock_en_clk_wiz,,,../../../../Homework3-DigitalClock.gen/sources_1/ip/gen_clock_en,,,,,
+C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.sim/sim_1/behav/xsim/glbl.v,1665704903,verilog,,,,glbl,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sim_1/new/clock_tb.v,1699942976,verilog,,,,clock_tb,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/clock.v,1699945303,verilog,,C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/gen_clock_en.v,,clock,,,,,,,,
+C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/gen_clock_en.v,1699942537,verilog,,C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sim_1/new/clock_tb.v,,gen_counter_en,,,,,,,,

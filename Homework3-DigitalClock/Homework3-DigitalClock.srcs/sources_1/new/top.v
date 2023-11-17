@@ -22,16 +22,20 @@ assign clk_6mhz = clk;  //for Simulation only
 //for reset signal generation
 assign rst = reset_poweron | (~locked); 
 
+//1초에 한 번 발생하는 clock enable 신호
 //for speed control: SIZE=6000000(x1), SIZE=600000(x10), SIZE=6000(x1000)
-gen_counter_en #(.SIZE(6000000)) gen_clock_en_inst (clk_6mhz, rst, clock_en); 
-clock clock_inst (clk_6mhz, rst, clock_en, digit, up, down, sec0, sec1, min0, min1, hrs0, hrs1); 
+gen_counter_en #(.SIZE(6000000)) gen_clock_en_inst (clk_6mhz, rst, clock_en);
+//실제 시계 값
+clock clock_inst (clk_6mhz, rst, clock_en, 
+                    digit, up, down, 
+                    sec0, sec1, min0, min1, hrs0, hrs1); 
 
-// for debouncing, use btn_pulse that has only 1 cycle duration) 
+// for debouncing, use btn_pulse that has only 1 cycle duration)
 //버튼 디바운싱 후 펄스를 각 신호에 넣기
 debounce #(.BTN_WIDTH(4)) debounce_btn0_inst (clk_6mhz, rst, btn, ,btn_pulse);
 assign {down, up, right, left} = btn_pulse;
 
-//7-seg decoder
+//7-seg decoder로 띄우기
 dec7 dec_sec0_inst (sec0, sec0_out); 
 dec7 dec_sec1_inst (sec1, sec1_out); 
 dec7 dec_min0_inst (min0, min0_out); 
