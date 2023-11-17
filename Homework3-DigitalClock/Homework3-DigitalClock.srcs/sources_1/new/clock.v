@@ -8,11 +8,11 @@ output reg [3:0] sec0, sec1, min0, min1, hrs0, hrs1
     );
 
 assign sec0_ovf = (sec0 == 9) ? 1'b1 : 1'b0;
-assign sec1_ovf = (sec1 == 5) ? 1'b1 : 1'b0;
-assign min0_ovf = (min0 == 9) ? 1'b1 : 1'b0;
-assign min1_ovf = (min1 == 5) ? 1'b1 : 1'b0;
-assign hrs0_ovf = (hrs0 == 3) ? 1'b1 : 1'b0;
-assign hrs1_ovf = (hrs1 == 2) ? 1'b1 : 1'b0;
+assign sec1_ovf = (sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
+assign min0_ovf = (min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
+assign min1_ovf = (min1 == 5&&min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
+assign hrs0_ovf = (hrs0 == 3&&min1 == 5&&min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
+assign hrs1_ovf = (hrs1 == 2&&hrs0 == 3&&min1 == 5&&min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
 
 always @(posedge clk_6mhz or posedge rst) begin//XX:XX:Xs
     if (rst)
@@ -22,42 +22,42 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:XX:Xs
         else sec0 <= sec0 + 1;
     end
 end
-always @(negedge sec0_ovf or posedge rst) begin//XX:XX:sX
+always @(posedge clk_6mhz or posedge rst) begin//XX:XX:sX
     if (rst)
         sec1 <= 4'b0;
-    else if (clock_en) begin
+    else if (clock_en&&sec0_ovf) begin
         if(sec1==5)sec1 <= 0;
         else sec1 <= sec1 + 1;
     end
 end
-always @(negedge sec1_ovf or posedge rst) begin//XX:Xm:XX
+always @(posedge clk_6mhz or posedge rst) begin//XX:Xm:XX
     if (rst)
         min0 <= 4'b0;
-    else if (clock_en) begin
+    else if (clock_en&&sec1_ovf) begin
         if(min0==9)min0 <= 0;
         else min0 <= min0 + 1;
     end
 end
-always @(negedge min0_ovf or posedge rst) begin//XX:mX:XX
+always @(posedge clk_6mhz or posedge rst) begin//XX:mX:XX
     if (rst)
         min1 <= 4'b0;
-    else if (clock_en) begin
+    else if (clock_en&&min0_ovf) begin
         if(min1==5)min1 <= 0;
         else min1 <= min1 + 1;
     end
 end
-always @(negedge min1_ovf or posedge rst) begin//XX:mX:XX
+always @(posedge clk_6mhz or posedge rst) begin//XX:mX:XX
     if (rst)
         hrs0 <= 4'b0;
-    else if (clock_en) begin
+    else if (clock_en&&min1_ovf) begin
         if(hrs0==5)hrs0 <= 0;
         else hrs0 <= hrs0 + 1;
     end
 end
-always @(negedge hrs0_ovf or posedge rst) begin//XX:mX:XX
+always @(posedge clk_6mhz or posedge rst) begin//XX:mX:XX
     if (rst)
         hrs1 <= 4'b0;
-    else if (clock_en) begin
+    else if (clock_en&&hrs0_ovf) begin
         if(hrs1==2)begin
             //hrs0 <= 0;
             hrs1 <= 0;

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Fri Nov 17 18:00:16 2023
+| Date         : Fri Nov 17 18:10:31 2023
 | Host         : TeddyLaptop running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -24,14 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 17
-+-------------+----------+-------------------------------------------------------------+------------+
-| Rule        | Severity | Description                                                 | Violations |
-+-------------+----------+-------------------------------------------------------------+------------+
-| PDRC-153    | Warning  | Gated clock check                                           | 11         |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 5          |
-| ZPS7-1      | Warning  | PS7 block required                                          | 1          |
-+-------------+----------+-------------------------------------------------------------+------------+
+             Violations found: 7
++----------+----------+--------------------+------------+
+| Rule     | Severity | Description        | Violations |
++----------+----------+--------------------+------------+
+| PDRC-153 | Warning  | Gated clock check  | 6          |
+| ZPS7-1   | Warning  | PS7 block required | 1          |
++----------+----------+--------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -42,87 +41,27 @@ Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net clock_inst/hrs1[3]_i_2_n_0 is a gated clock net sourced by a combinational pin clock_inst/hrs1[3]_i_2/O, cell clock_inst/hrs1[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net clock_inst/hrs0_reg[2]_0[0] is a gated clock net sourced by a combinational pin clock_inst/dec_out_reg[6]_i_2__3/O, cell clock_inst/dec_out_reg[6]_i_2__3. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#3 Warning
 Gated clock check  
-Net clock_inst/min0_ovf__0 is a gated clock net sourced by a combinational pin clock_inst/min0_ovf/O, cell clock_inst/min0_ovf. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net clock_inst/min0_reg[2]_0[0] is a gated clock net sourced by a combinational pin clock_inst/dec_out_reg[6]_i_2__1/O, cell clock_inst/dec_out_reg[6]_i_2__1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#4 Warning
 Gated clock check  
-Net clock_inst/min0_reg[3]_1[0] is a gated clock net sourced by a combinational pin clock_inst/dec_out_reg[6]_i_2__0/O, cell clock_inst/dec_out_reg[6]_i_2__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net clock_inst/min1_reg[2]_0[0] is a gated clock net sourced by a combinational pin clock_inst/dec_out_reg[6]_i_2__2/O, cell clock_inst/dec_out_reg[6]_i_2__2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#5 Warning
 Gated clock check  
-Net clock_inst/min1_ovf__0 is a gated clock net sourced by a combinational pin clock_inst/min1_ovf/O, cell clock_inst/min1_ovf. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net clock_inst/sec1_reg[2]_0[0] is a gated clock net sourced by a combinational pin clock_inst/dec_out_reg[6]_i_2__0/O, cell clock_inst/dec_out_reg[6]_i_2__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#6 Warning
 Gated clock check  
-Net clock_inst/sec0_ovf__0 is a gated clock net sourced by a combinational pin clock_inst/sec0_ovf/O, cell clock_inst/sec0_ovf. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#7 Warning
-Gated clock check  
-Net clock_inst/sec1_ovf__0 is a gated clock net sourced by a combinational pin clock_inst/sec1_ovf/O, cell clock_inst/sec1_ovf. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#8 Warning
-Gated clock check  
-Net dec_hrs0_inst/dec_out_n_0 is a gated clock net sourced by a combinational pin dec_hrs0_inst/dec_out/O, cell dec_hrs0_inst/dec_out. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#9 Warning
-Gated clock check  
 Net dec_hrs1_inst/dec_out_n_0 is a gated clock net sourced by a combinational pin dec_hrs1_inst/dec_out/O, cell dec_hrs1_inst/dec_out. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#10 Warning
-Gated clock check  
-Net dec_min1_inst/dec_out_n_0 is a gated clock net sourced by a combinational pin dec_min1_inst/dec_out/O, cell dec_min1_inst/dec_out. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#11 Warning
-Gated clock check  
-Net dec_sec1_inst/dec_out_n_0 is a gated clock net sourced by a combinational pin dec_sec1_inst/dec_out/O, cell dec_sec1_inst/dec_out. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PLHOLDVIO-2#1 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT clock_inst/hrs1[3]_i_2 is driving clock pin of 4 cells. This could lead to large hold time violations. Involved cells are:
-clock_inst/hrs1_reg[0], clock_inst/hrs1_reg[1], clock_inst/hrs1_reg[2]
-clock_inst/hrs1_reg[3]
-Related violations: <none>
-
-PLHOLDVIO-2#2 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT clock_inst/min0_ovf is driving clock pin of 4 cells. This could lead to large hold time violations. Involved cells are:
-clock_inst/min1_reg[0], clock_inst/min1_reg[1], clock_inst/min1_reg[2]
-clock_inst/min1_reg[3]
-Related violations: <none>
-
-PLHOLDVIO-2#3 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT clock_inst/min1_ovf is driving clock pin of 4 cells. This could lead to large hold time violations. Involved cells are:
-clock_inst/hrs0_reg[0], clock_inst/hrs0_reg[1], clock_inst/hrs0_reg[2]
-clock_inst/hrs0_reg[3]
-Related violations: <none>
-
-PLHOLDVIO-2#4 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT clock_inst/sec0_ovf is driving clock pin of 4 cells. This could lead to large hold time violations. Involved cells are:
-clock_inst/sec1_reg[0], clock_inst/sec1_reg[1], clock_inst/sec1_reg[2]
-clock_inst/sec1_reg[3]
-Related violations: <none>
-
-PLHOLDVIO-2#5 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT clock_inst/sec1_ovf is driving clock pin of 4 cells. This could lead to large hold time violations. Involved cells are:
-clock_inst/min0_reg[0], clock_inst/min0_reg[1], clock_inst/min0_reg[2]
-clock_inst/min0_reg[3]
 Related violations: <none>
 
 ZPS7-1#1 Warning
