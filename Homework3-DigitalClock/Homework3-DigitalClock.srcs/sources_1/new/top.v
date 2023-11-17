@@ -6,7 +6,7 @@ module top (
     output reg [5:0] seg_com
     );
     
-wire clk_6mhz;
+wire clk_6mhz, clk_600hz;
 wire [6:0] sec0_out, sec1_out, min0_out, min1_out, hrs0_out, hrs1_out; //7seg 숫자 표시용
 wire [3:0] sec0, sec1, min0, min1, hrs0, hrs1;//실제 각 자리 값
 wire clock_en;
@@ -16,19 +16,17 @@ wire [3:0] btn_pulse;
 wire locked, rst; 
 
 //for PLL
-//clk_wiz_0 clk_inst (clk_6mhz, reset_poweron, locked, clk); //for Zedboard
-assign clk_6mhz = clk;  //for Simulation only
+clk_wiz_0 clk_inst (clk_6mhz, reset_poweron, locked, clk); //for Zedboard
+//assign clk_6mhz = clk;  //for Simulation only
 
 //for reset signal generation
 assign rst = reset_poweron | (~locked); 
 
 //1초에 한 번 발생하는 clock enable 신호
 //for speed control: SIZE=6000000(x1), SIZE=600000(x10), SIZE=6000(x1000)
-gen_counter_en #(.SIZE(6000000)) gen_clock_en_inst (clk_6mhz, rst, clock_en);
+gen_counter_en #(.SIZE(6000)) gen_clock_en_inst (clk_6mhz, rst, clock_en);
 //실제 시계 값
-clock clock_inst (clk_6mhz, rst, clock_en, 
-                    digit, up, down, 
-                    sec0, sec1, min0, min1, hrs0, hrs1); 
+clock clock_inst (clk_6mhz, rst, clock_en, digit, up, down, sec0, sec1, min0, min1, hrs0, hrs1); 
 
 // for debouncing, use btn_pulse that has only 1 cycle duration)
 //버튼 디바운싱 후 펄스를 각 신호에 넣기
@@ -49,6 +47,12 @@ dec7 dec_hrs1_inst (hrs1, hrs1_out);
 
 //seg_com[5:0] generation code here (shifts 600 times per second)
 //seg_com[5:0] = 100000,010000,001000,000100,000010,000001,100000,010000……
+clk_divider #(.DIVISOR(10000)) clk_div(clk_6mhz, clk_600hz);
+
+always @(posedge clk_600hz, posedge rst) begin
+    if(rst) seg_com <= 6'b100000;
+    else seg_com <= {seg_com[0], seg_com[5:1]};
+end
 
 always @ (seg_com) begin
     case (seg_com)
