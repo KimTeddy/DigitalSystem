@@ -1,0 +1,22 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Thu Nov 16 11:57:21 2023
+# Process ID: 4292
+# Current directory: D:/Xilinx/DS/LAB5_VGA
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4580 D:\Xilinx\DS\LAB5_VGA\LAB5_VGA.xpr
+# Log file: D:/Xilinx/DS/LAB5_VGA/vivado.log
+# Journal file: D:/Xilinx/DS/LAB5_VGA\vivado.jou
+# Running On: Rhaudtjd-MSI-GE63VR-7RE, OS: Windows, CPU Frequency: 2808 MHz, CPU Physical cores: 4, Host memory: 25649 MB
+#-----------------------------------------------------------
+start_gui
+open_project D:/Xilinx/DS/LAB5_VGA/LAB5_VGA.xpr
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+open_project D:/Xilinx/DS/LAB5_VGA2/LAB5_VGA2.xpr
+update_compile_order -fileset sources_1
+current_project LAB5_VGA
+close_project
