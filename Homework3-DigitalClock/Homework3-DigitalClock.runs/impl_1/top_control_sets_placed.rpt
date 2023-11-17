@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Fri Nov 17 18:10:09 2023
+| Date         : Fri Nov 17 19:11:19 2023
 | Host         : TeddyLaptop running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -58,8 +58,8 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              43 |           14 |
-| No           | No                    | Yes                    |              44 |           10 |
+| No           | No                    | No                     |              43 |           13 |
+| No           | No                    | Yes                    |              44 |           16 |
 | No           | Yes                   | No                     |              32 |            9 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |              24 |            9 |
@@ -70,25 +70,25 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+------------------------------+----------------------------------+-------------------------+------------------+----------------+--------------+
-|         Clock Signal         |           Enable Signal          |     Set/Reset Signal    | Slice Load Count | Bel Load Count | Bels / Slice |
-+------------------------------+----------------------------------+-------------------------+------------------+----------------+--------------+
-|  clk_inst/inst/clk_out1      |                                  |                         |                1 |              1 |         1.00 |
-|  clk_inst/inst/clk_out1      | clock_inst/hrs00                 | gen_clock_en_inst/AR[0] |                2 |              4 |         2.00 |
-|  clk_inst/inst/clk_out1      | clock_inst/hrs10                 | gen_clock_en_inst/AR[0] |                1 |              4 |         4.00 |
-|  clk_inst/inst/clk_out1      | clock_inst/min10                 | gen_clock_en_inst/AR[0] |                1 |              4 |         4.00 |
-|  clk_inst/inst/clk_out1      | gen_clock_en_inst/o_reg[22]_0[0] | gen_clock_en_inst/AR[0] |                2 |              4 |         2.00 |
-|  clk_inst/inst/clk_out1      | gen_clock_en_inst/o_reg[26]_1[0] | gen_clock_en_inst/AR[0] |                2 |              4 |         2.00 |
-|  clk_inst/inst/clk_out1      | gen_clock_en_inst/sec0_reg[3][0] | gen_clock_en_inst/AR[0] |                1 |              4 |         4.00 |
-|  clock_inst/min0_reg[2]_0[0] |                                  |                         |                2 |              7 |         3.50 |
-|  clock_inst/hrs0_reg[2]_0[0] |                                  |                         |                3 |              7 |         2.33 |
-|  clock_inst/E[0]             |                                  |                         |                2 |              7 |         3.50 |
-|  clock_inst/sec1_reg[2]_0[0] |                                  |                         |                2 |              7 |         3.50 |
-|  clock_inst/min1_reg[2]_0[0] |                                  |                         |                2 |              7 |         3.50 |
-|  dec_hrs1_inst/dec_out_n_0   |                                  |                         |                2 |              7 |         3.50 |
-|  clk_div/CLK                 |                                  | gen_clock_en_inst/AR[0] |                2 |             12 |         6.00 |
-|  clk_inst/inst/clk_out1      |                                  | clk_div/clk_out         |                9 |             32 |         3.56 |
-|  clk_inst/inst/clk_out1      |                                  | gen_clock_en_inst/AR[0] |                8 |             32 |         4.00 |
-+------------------------------+----------------------------------+-------------------------+------------------+----------------+--------------+
++------------------------------+------------------------------------+-------------------------+------------------+----------------+--------------+
+|         Clock Signal         |            Enable Signal           |     Set/Reset Signal    | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------------------+------------------------------------+-------------------------+------------------+----------------+--------------+
+|  clk_inst/inst/clk_out1      |                                    |                         |                1 |              1 |         1.00 |
+|  clk_inst/inst/clk_out1      | clock_inst/hrs1[3]_i_1_n_0         | gen_clock_en_inst/AR[0] |                1 |              4 |         4.00 |
+|  clk_inst/inst/clk_out1      | gen_clock_en_inst/sec0_reg[3][0]   | gen_clock_en_inst/AR[0] |                1 |              4 |         4.00 |
+|  clk_inst/inst/clk_out1      | gen_clock_en_inst/sec0_reg[3]_0[0] | gen_clock_en_inst/AR[0] |                2 |              4 |         2.00 |
+|  clk_inst/inst/clk_out1      | gen_clock_en_inst/o_reg[14]_1[0]   | gen_clock_en_inst/AR[0] |                2 |              4 |         2.00 |
+|  clk_inst/inst/clk_out1      | gen_clock_en_inst/o_reg[6]_2[0]    | gen_clock_en_inst/AR[0] |                1 |              4 |         4.00 |
+|  clk_inst/inst/clk_out1      | gen_clock_en_inst/o_reg[6]_0[0]    | gen_clock_en_inst/AR[0] |                2 |              4 |         2.00 |
+|  clock_inst/hrs0_reg[1]_1[0] |                                    |                         |                2 |              7 |         3.50 |
+|  clock_inst/E[0]             |                                    |                         |                2 |              7 |         3.50 |
+|  clock_inst/hrs1_reg[1]_0[0] |                                    |                         |                2 |              7 |         3.50 |
+|  clock_inst/min1_reg[2]_0[0] |                                    |                         |                2 |              7 |         3.50 |
+|  clock_inst/min0_reg[3]_1[0] |                                    |                         |                2 |              7 |         3.50 |
+|  clock_inst/sec1_reg[2]_1[0] |                                    |                         |                2 |              7 |         3.50 |
+|  clk_div/CLK                 |                                    | gen_clock_en_inst/AR[0] |                3 |             12 |         4.00 |
+|  clk_inst/inst/clk_out1      |                                    | gen_clock_en_inst/AR[0] |               13 |             32 |         2.46 |
+|  clk_inst/inst/clk_out1      |                                    | clk_div/clk_out         |                9 |             32 |         3.56 |
++------------------------------+------------------------------------+-------------------------+------------------+----------------+--------------+
 
 

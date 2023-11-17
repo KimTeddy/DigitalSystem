@@ -24,7 +24,7 @@ assign rst = reset_poweron | (~locked);
 
 //1초에 한 번 발생하는 clock enable 신호
 //for speed control: SIZE=6000000(x1), SIZE=600000(x10), SIZE=6000(x1000)
-gen_counter_en #(.SIZE(6000)) gen_clock_en_inst (clk_6mhz, rst, clock_en);
+gen_counter_en #(.SIZE(600)) gen_clock_en_inst (clk_6mhz, rst, clock_en);
 //실제 시계 값
 clock clock_inst (clk_6mhz, rst, clock_en, digit, up, down, sec0, sec1, min0, min1, hrs0, hrs1); 
 
@@ -43,6 +43,23 @@ dec7 dec_hrs1_inst (hrs1, hrs1_out);
 
 //digit[5:0] generation code here with “left” or “right” button
 //digit[5:0] = 100000,010000,001000,000100,000010,000001,100000,010000……
+
+wire[7:0]a;
+wire[2:0]s;
+reg[7:0]o;
+
+always @ (a or s) begin //right rotation
+    case (s)
+        3'b000: o = a;
+        3'b001: o = {a[0], a[7:1]};
+        3'b010: o = {a[1:0], a[7:2]};
+        3'b011: o = {a[2:0], a[7:3]};
+        3'b100: o = {a[3:0], a[7:4]};
+        3'b101: o = {a[4:0], a[7:5]};
+        3'b110: o = {a[5:0], a[7:6]};
+        default: o = {a[6:0], a[7]};
+    endcase
+end
 
 
 //seg_com[5:0] generation code here (shifts 600 times per second)
