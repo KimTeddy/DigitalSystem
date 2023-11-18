@@ -122,6 +122,7 @@ always @(posedge clk_6mhz or posedge rst) begin//hX:XX:XX
     end
 end
 endmodule
+
 // always @(posedge clk_6mhz or posedge rst) begin//XX:XX:Xs
 //     if (rst)
 //         sec0 <= 4'b0;
