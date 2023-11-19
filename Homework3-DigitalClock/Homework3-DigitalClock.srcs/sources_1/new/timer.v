@@ -1,25 +1,24 @@
-module alarm(
+module timer(
 input clk_6mhz,
 input rst,
 input clock_en,
 input [5:0] digit,//바꿀 숫자
-input up, down,
-input [3:0] sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0,
+input up, down, timer_en,
 output reg [3:0] sec0, sec1, min0, min1, hrs0, hrs1,
-output reg alarm_trigger
+output reg timer_trigger
     );
 
-always @(*) begin
-    if((sec0_0==sec0)&&(sec1_0==sec1)&&(min0_0==min0)&&(min1_0==min1)&&(hrs0_0==hrs0)&&(hrs1_0==hrs1))
-        alarm_trigger=1'b1;
-    else
-        alarm_trigger=1'b0;
-end
+assign sec0_ovf =                                                        (sec0 == 9) ? 1'b1 : 1'b0;
+assign sec1_ovf =                                             (sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
+assign min0_ovf =                                  (min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
+assign min1_ovf =                       (min1 == 5&&min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
+assign hrs0_ovf =            (hrs0 == 9&&min1 == 5&&min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
+assign hrs1_ovf = (hrs1 == 2&&hrs0 == 3&&min1 == 5&&min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
 
 always @(posedge clk_6mhz or posedge rst) begin//XX:XX:Xs
     if (rst)
         sec0 <= 4'b0;
-    else if (digit[5]&&up) begin
+    else if (clock_en||digit[5]&&up) begin
         if(sec0==9)sec0 <= 0;
         else sec0 <= sec0 + 1;
     end
@@ -31,7 +30,7 @@ end
 always @(posedge clk_6mhz or posedge rst) begin//XX:XX:sX
     if (rst)
         sec1 <= 4'b0;
-    else if (digit[4]&&up) begin
+    else if (clock_en&&sec0_ovf||digit[4]&&up) begin
         if(sec1==5)sec1 <= 0;
         else sec1 <= sec1 + 1;
     end
@@ -43,7 +42,7 @@ end
 always @(posedge clk_6mhz or posedge rst) begin//XX:Xm:XX
     if (rst)
         min0 <= 4'b0;
-    else if (digit[3]&&up) begin
+    else if (clock_en&&sec1_ovf||digit[3]&&up) begin
         if(min0==9)min0 <= 0;
         else min0 <= min0 + 1;
     end
@@ -55,7 +54,7 @@ end
 always @(posedge clk_6mhz or posedge rst) begin//XX:mX:XX
     if (rst)
         min1 <= 4'b0;
-    else if (digit[2]&&up) begin
+    else if (clock_en&&min0_ovf||digit[2]&&up) begin
         if(min1==5)min1 <= 0;
         else min1 <= min1 + 1;
     end
@@ -67,6 +66,10 @@ end
 always @(posedge clk_6mhz or posedge rst) begin//Xh:XX:XX
     if (rst)
         hrs0 <= 4'b0;
+    else if (clock_en&&min1_ovf) begin
+        if(hrs0==9||hrs1_ovf)hrs0 <= 0;
+        else hrs0 <= hrs0 + 1;
+    end
     else if(hrs1==2&&hrs0>3)hrs0 <= 3;
     else if(digit[1]&&up)begin
         if(hrs0==9||hrs1==2&&hrs0==3)hrs0 <= 0;
@@ -83,6 +86,12 @@ always @(posedge clk_6mhz or posedge rst) begin//hX:XX:XX
     else if(digit[0]&&up)begin
         if(hrs1==2)hrs1 <= 0;
         else hrs1 <= hrs1 + 1;
+    end
+    else if (clock_en&&hrs0_ovf) begin
+        if(hrs1!=2) hrs1 <= hrs1 + 1;
+    end
+    else if (clock_en&&hrs1_ovf) begin
+        if(hrs1==2) hrs1 <= 0;
     end
     else if(digit[0]&&down) begin
         if(hrs1==0)hrs1 <= 0;
