@@ -74,7 +74,7 @@ end
 
 always @(posedge clock_en_blink, posedge rst)begin
     if(rst) led[5]<=1'b0;
-    else if(timer_trigger&&timer_en)       led[5]<=led[5]^1'b1;
+    else if(timer_trigger&&timer_en) led[5]<=led[5]^1'b1;
     else led[5]<=1'b0;
 end
 // always @(posedge clock_en_m, posedge rst)begin
@@ -84,9 +84,10 @@ end
 // end
 always @(posedge clock_en_blink, posedge rst)begin
     if(rst) led[7]<=1'b0;
-    else if(alarm_trigger&&alarm_en)       led[7]<=led[7]^1'b1;
+    else if(alarm_trigger) led[7]<=led[7]^1'b1;
     else led[7]<=1'b0;
 end
+//    else if(alarm_trigger&&alarm_en) led[7]<=led[7]^1'b1;
 
 //버튼----------------------------------------------------------------------------------------
 //버튼 디바운싱 후 펄스를 각 신호에 넣기
