@@ -3,7 +3,7 @@ module top (
     input reset_poweron,
     input [3:0] btn, 
     input [7:0] dip, 
-    output reg [7:0] led,
+    //output reg [7:0] led,
     output reg [7:0] seg_data, 
     output reg [5:0] seg_com
     );
@@ -28,7 +28,8 @@ wire [3:0] sec0_3, sec1_3, min0_3, min1_3, hrs0_3, hrs1_3;//ALARM
 wire timer_trigger, stopwatch_trigger, alarm_trigger;
 wire timer_en;
 //모드용 변수
-wire [1:0] mode; // 0:clock, 1:timer, 2:stopwatch, 3:alarm
+wire [1:0] mode_out; // 0:clock, 1:timer, 2:stopwatch, 3:alarm
+reg [1:0] mode;
 wire [3:0]for_mode_button;//mode_button을 위해 btn out 받는 용도
 wire mode_button;//실제 모드 버튼
 reg mode_trigger;//2초 세는 용도
@@ -51,26 +52,26 @@ gen_counter_en #(.SIZE(60000)) gen_clock_en_m_inst (clk_6mhz, rst, clock_en_m);
 assign timer_en = dip[0];
 
 //led----------------------------------------------------------------------------------------
-assign led[7] = (mode==CLOCK) ? 1'b1 : 1'b0;
-assign led[6] = (mode==TIMER) ? 1'b1 : 1'b0;
-assign led[5] = (mode==STOPWATCH) ? 1'b1 : 1'b0;
-assign led[4] = (mode==ALARM) ? 1'b1 : 1'b0;
+// assign led[7] = (mode==CLOCK) ? 1'b1 : 1'b0;
+// assign led[6] = (mode==TIMER) ? 1'b1 : 1'b0;
+// assign led[5] = (mode==STOPWATCH) ? 1'b1 : 1'b0;
+// assign led[4] = (mode==ALARM) ? 1'b1 : 1'b0;
 
-always @(posedge clock_en_m, posedge rst)begin
-    if(rst) led[3]<=1'b0;
-    else if(timer_trigger)       led[3]<=led[3]^1'b1;
-    else led[3]<=1'b0;
-end
-always @(posedge clock_en_m, posedge rst)begin
-    if(rst) led[2]<=1'b0;
-    else if(stopwatch_trigger)   led[2]<=led[2]^1'b1;
-    else led[2]<=1'b0;
-end
-always @(posedge clock_en_m, posedge rst)begin
-    if(rst) led[1]<=1'b0;
-    else if(alarm_trigger)       led[1]<=led[1]^1'b1;
-    else led[1]<=1'b0;
-end
+// always @(posedge clock_en_m, posedge rst)begin
+//     if(rst) led[3]<=1'b0;
+//     else if(timer_trigger)       led[3]<=led[3]^1'b1;
+//     else led[3]<=1'b0;
+// end
+// always @(posedge clock_en_m, posedge rst)begin
+//     if(rst) led[2]<=1'b0;
+//     else if(stopwatch_trigger)   led[2]<=led[2]^1'b1;
+//     else led[2]<=1'b0;
+// end
+// always @(posedge clock_en_m, posedge rst)begin
+//     if(rst) led[1]<=1'b0;
+//     else if(alarm_trigger)       led[1]<=led[1]^1'b1;
+//     else led[1]<=1'b0;
+// end
 
 //버튼----------------------------------------------------------------------------------------
 //버튼 디바운싱 후 펄스를 각 신호에 넣기
@@ -105,8 +106,8 @@ always @(posedge clock_en, posedge rst)begin//2초 세는 mode_trigger
 end
 assign mode_change_trigger = (mode_trigger>=2) ? 1'b1 : 1'b0;//right 버튼 누른지 2초 지나면 1 됨
 
-mode_changer mode_changer_inst (rst, mode_change_trigger, mode);//모드 변경 FSM
-
+mode_changer mode_changer_inst (rst, mode_change_trigger, mode_out);//모드 변경 FSM
+assign mode = mode_out;
 //시계 숫자 값------------------------------------------------------------------------------------
 clock       clock_inst      (clk_6mhz, rst, clock_en, digit, up&&(mode==CLOCK), down&&(mode==CLOCK),     
                             sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0); 
@@ -118,9 +119,7 @@ alarm       alarm_inst      (clk_6mhz, rst, clock_en, digit, up&&(mode==ALARM), 
                             sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0, 
                             sec0_3, sec1_3, min0_3, min1_3, hrs0_3, hrs1_3, alarm_trigger);
 
-always @(posedge clk_6mhz, posedge rst) begin
-    if(rst) mode <= CLOCK;
-end
+
 always @(*)begin
     case(mode)
         CLOCK:      begin 

@@ -1,6 +1,4 @@
-module mode_changer(
-rst, mode_change_trigger, mode
-    );
+module mode_changer(rst, mode_change_trigger, mode);
 input rst;
 input mode_change_trigger;
 output reg [1:0] mode; // 0:clock, 1:timer, 2:stopwatch, 3:alarm
@@ -27,11 +25,11 @@ end
 
 always @(*) begin
     case(c_state)
-        CLOCK:      begin mode=2'd0; end
-        TIMER:      begin mode=2'd1; end
-        STOPWATCH:  begin mode=2'd2; end
-        ALARM:      begin mode=2'd3; end
-        default:    begin mode=2'd0; end
+        CLOCK:      begin mode=CLOCK;     end
+        TIMER:      begin mode=TIMER;     end
+        STOPWATCH:  begin mode=STOPWATCH; end
+        ALARM:      begin mode=ALARM;     end
+        default:    begin mode=CLOCK;     end
     endcase
 end
 
