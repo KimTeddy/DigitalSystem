@@ -71,6 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
+set_param chipscope.maxJobs 5
 set_param synth.incrementalSynthesisCache C:/Users/KimTeddy/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-1672-TeddyLaptop/incrSyn
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
@@ -99,7 +100,6 @@ read_verilog -library xil_defaultlib {
   C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/debounce.v
   C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/dec7.v
   C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/gen_clock_en.v
-  C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/mode_changer.v
   C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/stopwatch.v
   C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/timer.v
   C:/Xilinx/DigitalSystem/Homework3-DigitalClock/Homework3-DigitalClock.srcs/sources_1/new/top.v
