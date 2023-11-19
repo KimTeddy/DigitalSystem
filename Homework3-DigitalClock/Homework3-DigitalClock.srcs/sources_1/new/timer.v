@@ -69,7 +69,8 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:XX:sX
     end
     //else if(sec0_remain) sec1 <= 0;
     else if(timer_en&&clock_en) begin
-        if(sec1==0&&min0_remain)sec1 <= 5;
+        if(hrs1_udf) begin end
+        else if(sec1==0&&min0_remain)sec1 <= 5;
         else if(sec0_udf) sec1 <= sec1 - 1;
     end
 end
@@ -85,8 +86,9 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:Xm:XX
         else min0 <= min0 - 1;
     end
     //else if(sec1_remain) min0 <= 0;
-    else if(timer_en&&clock_en) begin
-        if(min0==0&&min1_remain)min0 <= 9;
+    else if(timer_en&&clock_en&&sec1_udf) begin
+        if(hrs1_udf) begin end
+        else if(min0==0&&min1_remain)min0 <= 9;
         else if(sec1_udf) min0 <= min0 - 1;
     end
 end
@@ -103,7 +105,8 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:mX:XX
     end
     //else if(min0_remain) min1 <= 0;
     else if(timer_en&&clock_en) begin
-        if(min1==0&&hrs0_remain)min1 <= 5;
+        if(hrs1_udf) begin end
+        else if(min1==0&&hrs0_remain)min1 <= 5;
         else if(min0_udf) min1 <= min1 - 1;
     end
 end
@@ -120,7 +123,8 @@ always @(posedge clk_6mhz or posedge rst) begin//Xh:XX:XX
     end
     //else if(min1_remain) hrs0 <= 0;
     else if(timer_en&&clock_en) begin
-        if(hrs0==0&&hrs1_remain)hrs0 <= 9;
+        if(hrs1_udf) begin end
+        else if(hrs0==0&&hrs1_remain)hrs0 <= 9;
         else if(min1_udf) hrs0 <= hrs0 - 1;
     end
 end
@@ -137,7 +141,8 @@ always @(posedge clk_6mhz or posedge rst) begin//hX:XX:XX
     end
     //else if(hrs0_remain) hrs1 <= 0;
     else if(timer_en&&clock_en) begin
-        if(hrs1==0)hrs1 <= 0;
+        if(hrs1_udf) begin end
+        else if(hrs1==0)hrs1 <= 0;
         else if(hrs0_udf) hrs1 <= hrs1 - 1;
     end
 end

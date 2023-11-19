@@ -161,7 +161,7 @@ clock       clock_inst      (clk_6mhz, rst, clock_en, digit, up&&(c_state==CLOCK
                             sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0); 
 timer       timer_inst      (clk_6mhz, rst, clock_en, digit, up&&(c_state==TIMER), down&&(c_state==TIMER), timer_en,
                             sec0_1, sec1_1, min0_1, min1_1, hrs0_1, hrs1_1, timer_trigger); 
-stopwatch   stopwatch_inst  (clk_6mhz, stopwatch_rst, clock_en_m, stopwatch_en,//start&&(c_state==STOPWATCH), stop&&(c_state==STOPWATCH), 
+stopwatch   stopwatch_inst  (clk_6mhz, (stopwatch_rst||rst), clock_en_m, stopwatch_en,//start&&(c_state==STOPWATCH), stop&&(c_state==STOPWATCH), 
                             msec0_2,msec1_2,sec0_2, sec1_2, min0_2, min1_2);
 alarm       alarm_inst      (clk_6mhz, rst, clock_en, digit, up&&(c_state==ALARM), down&&(c_state==ALARM), 
                             sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0, 
