@@ -22,6 +22,18 @@ assign min1_udf =                       (min1 == 0&&min0 == 0&&sec1 == 0&&sec0 =
 assign hrs0_udf =            (hrs0 == 0&&min1 == 0&&min0 == 0&&sec1 == 0&&sec0 == 0) ? 1'b1 : 1'b0;
 assign hrs1_udf = (hrs1 == 0&&hrs0 == 0&&min1 == 0&&min0 == 0&&sec1 == 0&&sec0 == 0) ? 1'b1 : 1'b0;
 
+assign hrs1_remain =   (hrs1 > 0) ? 1'b1 : 1'b0;
+assign hrs0_remain =   (hrs1 > 0||hrs0 > 0) ? 1'b1 : 1'b0;
+assign min1_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0) ? 1'b1 : 1'b0;
+assign min0_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0||min0 > 0) ? 1'b1 : 1'b0;
+assign sec1_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0||min0 > 0||sec1 > 0) ? 1'b1 : 1'b0;
+
+//assign timer_trigger = (hrs1 == 0&&hrs0 == 0&&min1 == 0&&min0 == 0&&sec1 == 0&&sec0 == 0) ? 1'b1 : 1'b0;
+always @(*) begin
+    if(hrs1_udf) timer_trigger=1'b1;
+    else timer_trigger=1'b0;
+end
+
 always @(posedge clk_6mhz or posedge rst) begin//XX:XX:Xs
     if (rst)
         sec0 <= 4'b0;
@@ -35,8 +47,9 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:XX:Xs
     end
     //else if(timer_trigger) sec0 <= 0;
     else if(timer_en&&clock_en) begin
-        if(sec0==0)sec0 <= 9;
-        else(!hrs1_udf) sec0 <= sec0 - 1;
+        if(hrs1_udf) begin end
+        else if(sec0==0&&sec1_remain)sec0 <= 9;
+        else sec0 <= sec0 - 1;
     end
 end
 always @(posedge clk_6mhz or posedge rst) begin//XX:XX:sX
@@ -52,7 +65,7 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:XX:sX
     end
     //else if(sec0_remain) sec1 <= 0;
     else if(timer_en&&clock_en) begin
-        if(sec1==0)sec1 <= 5;
+        if(sec1==0&&min0_remain)sec1 <= 5;
         else if(sec0_udf) sec1 <= sec1 - 1;
     end
 end
@@ -69,7 +82,7 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:Xm:XX
     end
     //else if(sec1_remain) min0 <= 0;
     else if(timer_en&&clock_en) begin
-        if(min0==0)min0 <= 9;
+        if(min0==0&&min1_remain)min0 <= 9;
         else if(sec1_udf) min0 <= min0 - 1;
     end
 end
@@ -86,7 +99,7 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:mX:XX
     end
     //else if(min0_remain) min1 <= 0;
     else if(timer_en&&clock_en) begin
-        if(min1==0)min1 <= 5;
+        if(min1==0&&hrs0_remain)min1 <= 5;
         else if(min0_udf) min1 <= min1 - 1;
     end
 end
@@ -103,7 +116,7 @@ always @(posedge clk_6mhz or posedge rst) begin//Xh:XX:XX
     end
     //else if(min1_remain) hrs0 <= 0;
     else if(timer_en&&clock_en) begin
-        if(hrs0==0)hrs0 <= 9;
+        if(hrs0==0&&hrs1_remain)hrs0 <= 9;
         else if(min1_udf) hrs0 <= hrs0 - 1;
     end
 end
