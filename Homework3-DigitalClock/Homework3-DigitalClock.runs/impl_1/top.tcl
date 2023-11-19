@@ -127,6 +127,7 @@ set rc [catch {
   set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 5
   set_param synth.incrementalSynthesisCache C:/Users/KimTeddy/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-1672-TeddyLaptop/incrSyn
+  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7z020clg484-1
   set_property board_part_repo_paths {C:/Users/KimTeddy/AppData/Roaming/Xilinx/Vivado/2022.2/xhub/board_store/xilinx_board_store} [current_project]

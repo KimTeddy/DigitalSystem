@@ -2,17 +2,17 @@ module stopwatch(
 input clk_6mhz,
 input rst,
 input clock_en_m,
-input start, stop,
-output reg [3:0] msec0, msec1, sec0, sec1, min0, min1,
-output reg stopwatch_trigger
+input stopwatch_en,
+//input start, stop,
+output reg [3:0] msec0, msec1, sec0, sec1, min0, min1
     );
-reg stopwatch_en;
+// reg stopwatch_en;
 
-always @(*)begin
-    if(start)       stopwatch_en=1'b1;
-    else if(stop)   stopwatch_en=1'b0;
-    else            stopwatch_en=1'b0;
-end
+// always @(*)begin
+//     if(start)       stopwatch_en=1'b1;
+//     else if(stop)   stopwatch_en=1'b0;
+//     else            stopwatch_en=1'b0;
+// end
 
 assign msec0_ovf=                                                         (msec0 == 9) ? 1'b1 : 1'b0;
 assign msec1_ovf=                                             (msec1 == 5&&msec0 == 9) ? 1'b1 : 1'b0;
@@ -41,7 +41,7 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:Xs:XX
     if (rst)
         sec0 <= 4'b0;
     else if (clock_en_m&&msec1_ovf&&stopwatch_en) begin
-        if(sec0==5)sec0 <= 0;
+        if(sec0==9)sec0 <= 0;
         else sec0 <= sec0 + 1;
     end
 end
