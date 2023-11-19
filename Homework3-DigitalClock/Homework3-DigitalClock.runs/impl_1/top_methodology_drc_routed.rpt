@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sun Nov 19 19:35:13 2023
+| Date         : Sun Nov 19 21:20:25 2023
 | Host         : TeddyLaptop running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 18
+             Violations found: 19
 +-----------+------------------+------------------------------+------------+
 | Rule      | Severity         | Description                  | Violations |
 +-----------+------------------+------------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell  | 17         |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell  | 18         |
 | LUTAR-1   | Warning          | LUT drives async reset alert | 1          |
 +-----------+------------------+------------------------------+------------+
 
@@ -45,75 +45,80 @@ Related violations: <none>
 
 TIMING-17#3 Critical Warning
 Non-clocked sequential cell  
-The clock pin led_reg[7]/C is not reached by a timing clock
+The clock pin led_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#4 Critical Warning
 Non-clocked sequential cell  
-The clock pin mode_trigger_reg[0]/C is not reached by a timing clock
+The clock pin led_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#5 Critical Warning
 Non-clocked sequential cell  
-The clock pin mode_trigger_reg[1]/C is not reached by a timing clock
+The clock pin mode_trigger_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#6 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[0]/C is not reached by a timing clock
+The clock pin mode_trigger_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#7 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[0]_lopt_replica/C is not reached by a timing clock
+The clock pin seg_com_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#8 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[1]/C is not reached by a timing clock
+The clock pin seg_com_reg[0]_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#9 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[1]_lopt_replica/C is not reached by a timing clock
+The clock pin seg_com_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#10 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[2]/C is not reached by a timing clock
+The clock pin seg_com_reg[1]_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#11 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[2]_lopt_replica/C is not reached by a timing clock
+The clock pin seg_com_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#12 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[3]/C is not reached by a timing clock
+The clock pin seg_com_reg[2]_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#13 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[3]_lopt_replica/C is not reached by a timing clock
+The clock pin seg_com_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#14 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[4]/C is not reached by a timing clock
+The clock pin seg_com_reg[3]_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#15 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[4]_lopt_replica/C is not reached by a timing clock
+The clock pin seg_com_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#16 Critical Warning
 Non-clocked sequential cell  
-The clock pin seg_com_reg[5]/C is not reached by a timing clock
+The clock pin seg_com_reg[4]_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#17 Critical Warning
+Non-clocked sequential cell  
+The clock pin seg_com_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#18 Critical Warning
 Non-clocked sequential cell  
 The clock pin seg_com_reg[5]_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
@@ -127,7 +132,7 @@ timer_inst/min1_reg[3]/CLR, timer_inst/sec0_reg[0]/CLR,
 timer_inst/sec0_reg[1]/CLR, timer_inst/sec0_reg[2]/CLR,
 timer_inst/sec0_reg[3]/CLR, timer_inst/sec1_reg[0]/CLR,
 timer_inst/sec1_reg[1]/CLR, timer_inst/sec1_reg[2]/CLR,
-timer_inst/sec1_reg[3]/CLR (the first 15 of 224 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+timer_inst/sec1_reg[3]/CLR (the first 15 of 200 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 

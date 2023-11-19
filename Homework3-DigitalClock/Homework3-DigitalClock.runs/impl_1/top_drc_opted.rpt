@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sun Nov 19 19:34:45 2023
+| Date         : Sun Nov 19 21:20:02 2023
 | Host         : TeddyLaptop running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_opted.rpt -pb top_drc_opted.pb -rpx top_drc_opted.rpx
 | Design       : top
@@ -24,11 +24,11 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 2
+             Violations found: 3
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
 | ZPS7-1      | Warning  | PS7 block required                                          | 1          |
 +-------------+----------+-------------------------------------------------------------+------------+
 
@@ -36,8 +36,14 @@ Table of Contents
 -----------------
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT gen_clock_en_blink_inst/led[7]_i_5 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
-led_reg[7]
+A LUT gen_clock_en_blink_inst/led[5]_i_5 is driving clock pin of 2 cells. This could lead to large hold time violations. Involved cells are:
+led_reg[5], led_reg[7]
+Related violations: <none>
+
+PLHOLDVIO-2#2 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT gen_clock_en_inst/mode_trigger[1]_i_2 is driving clock pin of 2 cells. This could lead to large hold time violations. Involved cells are:
+mode_trigger_reg[0], mode_trigger_reg[1]
 Related violations: <none>
 
 ZPS7-1#1 Warning
