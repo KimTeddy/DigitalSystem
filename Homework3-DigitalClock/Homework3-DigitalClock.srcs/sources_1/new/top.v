@@ -13,7 +13,7 @@ wire [6:0] sec0_out, sec1_out, min0_out, min1_out, hrs0_out, hrs1_out; //7seg �
 reg [3:0] sec0, sec1, min0, min1, hrs0, hrs1;//실제 각 자리 값
 wire [3:0] sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0;//CLOCK
 wire [3:0] sec0_1, sec1_1, min0_1, min1_1, hrs0_1, hrs1_1;//TIMER
-wire [3:0] sec0_2, sec1_2, min0_2, min1_2, hrs0_2, hrs1_2;//STOPWATCH
+wire [3:0] msec0_2,msec1_2,sec0_2, sec1_2, min0_2, min1_2;//STOPWATCH
 wire [3:0] sec0_3, sec1_3, min0_3, min1_3, hrs0_3, hrs1_3;//ALARM
 wire clock_en;
 reg [5:0] digit;
@@ -31,8 +31,9 @@ assign rst = reset_poweron | (~locked);
 //1초에 한 번 발생하는 clock enable 신호
 //for speed control: SIZE=6000000(x1), SIZE=600000(x10), SIZE=6000(x1000)
 gen_counter_en #(.SIZE(6000000)) gen_clock_en_inst (clk_6mhz, rst, clock_en);
+gen_counter_en #(.SIZE(60000)) gen_clock_en_m_inst (clk_6mhz, rst, clock_en_m);
 
-//모드
+//모드 변경
 wire [3:0]for_mode_button;//mode_button을 위해 btn out 받는 용도
 wire mode_button;//실제 모드 버튼
 reg mode_trigger;//2초 세는 용도
@@ -51,8 +52,11 @@ mode_changer mode_changer_inst (rst, mode_change_trigger, mode);//모드 변경 
 
 
 //시계 숫자 값
-clock clock_inst (clk_6mhz, rst, clock_en, digit, up, down, sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0); 
-
+clock       clock_inst      (clk_6mhz, rst, clock_en, digit, up&&(mode==CLOCK),        down&&(mode==CLOCK),     
+                            sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0); 
+stopwatch   stopwatch_inst  (clk_6mhz, rst, clock_en_m,      start&&(mode==STOPWATCH), stop&&(mode==STOPWATCH), 
+                            sec0_0, sec1_0, min0_0, min1_0, hrs0_0, hrs1_0, 
+                            msec0_2,msec1_2,sec0_2, sec1_2, min0_2, min1_2);
 always @(*)begin
     case(mode)
         CLOCK:      begin 
@@ -70,12 +74,12 @@ always @(*)begin
             hrs0=hrs0_1;
             hrs1=hrs1_1;    end
         STOPWATCH:  begin 
-            sec0=sec0_2;
-            sec1=sec1_2;
-            min0=min0_2;
-            min1=min1_2;
-            hrs0=hrs0_2;
-            hrs1=hrs1_2;    end
+            sec0=msec0_2;
+            sec1=msec1_2;
+            min0=sec0_2;
+            min1=sec1_2;
+            hrs0=min0_2;
+            hrs1=min1_2;    end
         ALARM:      begin 
             sec0=sec0_3;
             sec1=sec1_3;
@@ -94,11 +98,41 @@ always @(*)begin
 end
 
 
-
 //버튼 디바운싱 후 펄스를 각 신호에 넣기
 // for debouncing, use btn_pulse that has only 1 cycle duration)
 debounce #(.BTN_WIDTH(4)) debounce_btn0_inst (clk_6mhz, rst, btn, for_mode_button, btn_pulse);
 assign {down, up, right, left} = btn_pulse;
+assign {start, stop} = btn_pulse[3:2];
+// always @(*)begin
+//     case(mode)
+//         CLOCK:      begin 
+//             btn_in_0[3]=down; btn_in_1[3]=0; btn_in_2[3]=0; btn_in_3[3]=0;
+//             btn_in_0[2]=up;   btn_in_1[2]=0; btn_in_2[2]=0; btn_in_3[2]=0;
+//             btn_in_0[1]=right;btn_in_1[1]=0; btn_in_2[1]=0; btn_in_3[1]=0;
+//             btn_in_0[0]=left; btn_in_1[0]=0; btn_in_2[0]=0; btn_in_3[0]=0; end
+//         TIMER:      begin 
+//             btn_in_0[3]=0; btn_in_1[3]=down; btn_in_2[3]=0; btn_in_3[3]=0;
+//             btn_in_0[2]=0; btn_in_1[2]=up;   btn_in_2[2]=0; btn_in_3[2]=0;
+//             btn_in_0[1]=0; btn_in_1[1]=right;btn_in_2[1]=0; btn_in_3[1]=0;
+//             btn_in_0[0]=0; btn_in_1[0]=left; btn_in_2[0]=0; btn_in_3[0]=0; end
+//         STOPWATCH:  begin 
+//             btn_in_0[3]=0; btn_in_1[3]=0; btn_in_2[3]=down; btn_in_3[3]=0;
+//             btn_in_0[2]=0; btn_in_1[2]=0; btn_in_2[2]=up;   btn_in_3[2]=0;
+//             btn_in_0[1]=0; btn_in_1[1]=0; btn_in_2[1]=0;    btn_in_3[1]=0;
+//             btn_in_0[0]=0; btn_in_1[0]=0; btn_in_2[0]=0;    btn_in_3[0]=0; end
+//         ALARM:      begin 
+//             btn_in_0[3]=0; btn_in_1[3]=0; btn_in_2[3]=0; btn_in_3[3]=down;
+//             btn_in_0[2]=0; btn_in_1[2]=0; btn_in_2[2]=0; btn_in_3[2]=up;
+//             btn_in_0[1]=0; btn_in_1[1]=0; btn_in_2[1]=0; btn_in_3[1]=right;
+//             btn_in_0[0]=0; btn_in_1[0]=0; btn_in_2[0]=0; btn_in_3[0]=left; end
+//         default:    begin 
+//             btn_in_0[3]=0; btn_in_1[3]=0; btn_in_2[3]=0; btn_in_3[3]=0;
+//             btn_in_0[2]=0; btn_in_1[2]=0; btn_in_2[2]=0; btn_in_3[2]=0;
+//             btn_in_0[1]=0; btn_in_1[1]=0; btn_in_2[1]=0; btn_in_3[1]=0;
+//             btn_in_0[0]=0; btn_in_1[0]=0; btn_in_2[0]=0; btn_in_3[0]=0; end
+//     endcase
+// end
+
 assign mode_button = for_mode_button[3];
 
 //7-seg decoder로 띄우기
