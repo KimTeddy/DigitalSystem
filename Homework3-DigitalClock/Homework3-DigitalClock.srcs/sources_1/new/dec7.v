@@ -16,7 +16,7 @@ begin
         4'b0111: dec_out = 7'b1110010; // 7
         4'b1000: dec_out = 7'b1111111; // 8
         4'b1001: dec_out = 7'b1111011; // 9
-        default: dec_out = dec_out;
+        default: dec_out = 7'b0000000;
     endcase
 end
 
