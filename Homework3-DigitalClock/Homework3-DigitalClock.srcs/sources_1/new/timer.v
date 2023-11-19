@@ -22,12 +22,16 @@ assign min1_udf =                       (min1 == 0&&min0 == 0&&sec1 == 0&&sec0 =
 assign hrs0_udf =            (hrs0 == 0&&min1 == 0&&min0 == 0&&sec1 == 0&&sec0 == 0) ? 1'b1 : 1'b0;
 assign hrs1_udf = (hrs1 == 0&&hrs0 == 0&&min1 == 0&&min0 == 0&&sec1 == 0&&sec0 == 0) ? 1'b1 : 1'b0;
 
+// assign hrs1_remain =   (hrs1 > 0) ? 1'b1 : 1'b0;
+// assign hrs0_remain =   (hrs1 > 0||hrs0 > 0) ? 1'b1 : 1'b0;
+// assign min1_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0) ? 1'b1 : 1'b0;
+// assign min0_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0||min0 > 0) ? 1'b1 : 1'b0;
+// assign sec1_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0||min0 > 0||sec1 > 0) ? 1'b1 : 1'b0;
 assign hrs1_remain =   (hrs1 > 0) ? 1'b1 : 1'b0;
-assign hrs0_remain =   (hrs1 > 0||hrs0 > 0) ? 1'b1 : 1'b0;
-assign min1_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0) ? 1'b1 : 1'b0;
-assign min0_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0||min0 > 0) ? 1'b1 : 1'b0;
-assign sec1_remain =   (hrs1 > 0||hrs0 > 0||min1 > 0||min0 > 0||sec1 > 0) ? 1'b1 : 1'b0;
-
+assign hrs0_remain =   (hrs0 > 0) ? 1'b1 : 1'b0;
+assign min1_remain =   (min1 > 0) ? 1'b1 : 1'b0;
+assign min0_remain =   (min0 > 0) ? 1'b1 : 1'b0;
+assign sec1_remain =   (sec1 > 0) ? 1'b1 : 1'b0;
 //assign timer_trigger = (hrs1 == 0&&hrs0 == 0&&min1 == 0&&min0 == 0&&sec1 == 0&&sec0 == 0) ? 1'b1 : 1'b0;
 always @(*) begin
     if(hrs1_udf) timer_trigger=1'b1;
@@ -49,7 +53,7 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:XX:Xs
     else if(timer_en&&clock_en) begin
         if(hrs1_udf) begin end
         else if(sec0==0&&sec1_remain)sec0 <= 9;
-        else sec0 <= sec0 - 1;
+        else if(sec0>0)sec0 <= sec0 - 1;
     end
 end
 always @(posedge clk_6mhz or posedge rst) begin//XX:XX:sX
@@ -78,7 +82,7 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:Xm:XX
     end
     else if(digit[3]&&down) begin
         if(min0==0)min0 <= 0;
-        else if(sec1_udf)min0 <= min0 - 1;
+        else min0 <= min0 - 1;
     end
     //else if(sec1_remain) min0 <= 0;
     else if(timer_en&&clock_en) begin
