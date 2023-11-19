@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sun Nov 19 21:20:24 2023
+| Date         : Sun Nov 19 23:00:50 2023
 | Host         : TeddyLaptop running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb -rpx top_drc_routed.rpx
 | Design       : top
@@ -37,18 +37,18 @@ Table of Contents
 -----------------
 PDRC-153#1 Warning
 Gated clock check  
-Net gen_clock_en_blink_inst/o_reg[11]_0 is a gated clock net sourced by a combinational pin gen_clock_en_blink_inst/led[5]_i_5/O, cell gen_clock_en_blink_inst/led[5]_i_5. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net gen_clock_en_blink_inst/o_reg[11]_0 is a gated clock net sourced by a combinational pin gen_clock_en_blink_inst/led[7]_i_8/O, cell gen_clock_en_blink_inst/led[7]_i_8. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net gen_clock_en_inst/clock_en is a gated clock net sourced by a combinational pin gen_clock_en_inst/mode_trigger[1]_i_2/O, cell gen_clock_en_inst/mode_trigger[1]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net gen_clock_en_inst/CLK is a gated clock net sourced by a combinational pin gen_clock_en_inst/mode_trigger[1]_i_2/O, cell gen_clock_en_inst/mode_trigger[1]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT gen_clock_en_blink_inst/led[5]_i_5 is driving clock pin of 2 cells. This could lead to large hold time violations. Involved cells are:
-led_reg[5], led_reg[7]
+A LUT gen_clock_en_blink_inst/led[7]_i_8 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+led_reg[7]
 Related violations: <none>
 
 PLHOLDVIO-2#2 Warning

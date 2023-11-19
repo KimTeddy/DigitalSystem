@@ -6,7 +6,7 @@ input [5:0] digit,//바꿀 숫자
 input up, down,
 output reg [3:0] sec0, sec1, min0, min1, hrs0, hrs1
     );
-
+wire sec0_ovf, sec1_ovf, min0_ovf, min1_ovf, hrs0_ovf, hrs1_ovf;
 assign sec0_ovf =                                                        (sec0 == 9) ? 1'b1 : 1'b0;
 assign sec1_ovf =                                             (sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
 assign min0_ovf =                                  (min0 == 9&&sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;

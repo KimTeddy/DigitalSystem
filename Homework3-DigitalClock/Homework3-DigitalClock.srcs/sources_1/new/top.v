@@ -26,7 +26,7 @@ wire [3:0] sec0_1, sec1_1, min0_1, min1_1, hrs0_1, hrs1_1;//TIMER
 wire [3:0] msec0_2,msec1_2,sec0_2, sec1_2, min0_2, min1_2;//STOPWATCH
 wire [3:0] sec0_3, sec1_3, min0_3, min1_3, hrs0_3, hrs1_3;//ALARM
 wire timer_trigger, alarm_trigger;
-wire timer_en, stopwatch_en, stopwatch_rst;
+wire timer_en, stopwatch_en, stopwatch_rst, alarm_en;
 reg [1:0] c_state;
 reg [1:0] n_state;
 //모드용 변수
@@ -55,6 +55,7 @@ gen_counter_en #(.SIZE(600000)) gen_clock_en_blink_inst (clk_6mhz, rst, clock_en
 assign timer_en = dip[0];
 assign stopwatch_en = dip[1];
 assign stopwatch_rst = dip[2];
+assign alarm_en = dip[3];
 //led----------------------------------------------------------------------------------------
 always @(*) begin
     case(c_state)
@@ -83,7 +84,7 @@ end
 // end
 always @(posedge clock_en_blink, posedge rst)begin
     if(rst) led[7]<=1'b0;
-    else if(alarm_trigger)       led[7]<=led[7]^1'b1;
+    else if(alarm_trigger&&alarm_en)       led[7]<=led[7]^1'b1;
     else led[7]<=1'b0;
 end
 
