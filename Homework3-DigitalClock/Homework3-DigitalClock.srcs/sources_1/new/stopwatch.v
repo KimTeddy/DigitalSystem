@@ -33,7 +33,7 @@ always @(posedge clk_6mhz or posedge rst) begin//XX:XX:sX
     if (rst)
         msec1 <= 4'b0;
     else if (clock_en_m&&msec0_ovf&&stopwatch_en) begin
-        if(msec1==5)msec1 <= 0;
+        if(msec1==9)msec1 <= 0;
         else msec1 <= msec1 + 1;
     end
 end

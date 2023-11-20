@@ -8,6 +8,7 @@ output reg [3:0] sec0, sec1, min0, min1, hrs0, hrs1,
 output reg timer_trigger
     );
 wire sec0_udf, sec1_udf, min0_udf, min1_udf, hrs0_udf, hrs1_udf;
+wire hrs1_remain, hrs0_remain, min1_remain, min0_remain, sec1_remain;
 //underflow
 // assign sec0_udf =                                                        (sec0 == 9) ? 1'b1 : 1'b0;
 // assign sec1_udf =                                             (sec1 == 5&&sec0 == 9) ? 1'b1 : 1'b0;
@@ -146,6 +147,7 @@ always @(posedge clk_6mhz or posedge rst) begin//hX:XX:XX
         else if(hrs0_udf) hrs1 <= hrs1 - 1;
     end
 end
+endmodule
 
 // always @(posedge clk_6mhz or posedge rst) begin//XX:XX:Xs
 //     if (rst)
@@ -444,7 +446,6 @@ end
 //         else if(hrs0==0) hrs1 <= hrs1 - 1;
 //     end
 // end
-endmodule
 
 
 
