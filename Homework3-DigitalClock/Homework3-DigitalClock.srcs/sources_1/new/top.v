@@ -8,7 +8,7 @@ module top (
     output reg [5:0] seg_com
     );
 
-//parameter CLOCK = 2'd0, TIMER = 2'd1, STOPWATCH = 2'd2, ALARM = 2'd3;
+parameter CLOCK = 2'd0, TIMER = 2'd1, STOPWATCH = 2'd2, ALARM = 2'd3;
 
 wire clk_6mhz;
 wire [6:0] sec0_out, sec1_out, min0_out, min1_out, hrs0_out, hrs1_out; //7seg 숫자 표시용
@@ -114,7 +114,7 @@ end
 //모드 변경------------------------------------------------------------------------------------
 
 //assign mode_button = for_mode_button[0];//left버튼 사용
-//down 버튼 2초 이상: 모드 변경
+//left 버튼 2초 이상: 모드 변경
 always @(posedge clock_en, posedge rst)begin//2초 세는 mode_trigger
     if(rst) mode_trigger <= 0;
     else if(for_mode_button[0]) mode_trigger <= mode_trigger + 1'b1;//버튼을 누르고 있는 동안 1씩 증가
@@ -131,7 +131,7 @@ always @(posedge mode_change_trigger, posedge rst)begin
     else if(mode_change_trigger)    c_state <= n_state;
 end
 
-parameter CLOCK = 2'd0, TIMER = 2'd1, STOPWATCH = 2'd2, ALARM = 2'd3;
+//parameter CLOCK = 2'd0, TIMER = 2'd1, STOPWATCH = 2'd2, ALARM = 2'd3;
 
 always @(*) begin
     case(c_state)

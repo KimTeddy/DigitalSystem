@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="stopwatch_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="stopwatch_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="11,165.001 ns"></ZoomEndTime>
+      <Cursor1Time time="1,010.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="404"></NameColumnWidth>
+      <ValueColumnWidth column_width="184"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/stopwatch_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/clock_en" type="logic">
+      <obj_property name="ElementShortName">clock_en</obj_property>
+      <obj_property name="ObjectShortName">clock_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/stopwatch_en" type="logic">
+      <obj_property name="ElementShortName">stopwatch_en</obj_property>
+      <obj_property name="ObjectShortName">stopwatch_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/sec0" type="array">
+      <obj_property name="ElementShortName">sec0[3:0]</obj_property>
+      <obj_property name="ObjectShortName">sec0[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/sec1" type="array">
+      <obj_property name="ElementShortName">sec1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">sec1[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/min0" type="array">
+      <obj_property name="ElementShortName">min0[3:0]</obj_property>
+      <obj_property name="ObjectShortName">min0[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/min1" type="array">
+      <obj_property name="ElementShortName">min1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">min1[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/hrs0" type="array">
+      <obj_property name="ElementShortName">hrs0[3:0]</obj_property>
+      <obj_property name="ObjectShortName">hrs0[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/stopwatch_tb/hrs1" type="array">
+      <obj_property name="ElementShortName">hrs1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">hrs1[3:0]</obj_property>
+   </wvobject>
+</wave_config>
