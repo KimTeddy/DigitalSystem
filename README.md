@@ -3,7 +3,7 @@
 ZEDBOARD
 ## Team Project
 - Mini Curling Game
-  - Video<br>
+  - Video(YouTube)<br>
   [![Video Label](http://img.youtube.com/vi/TDfz1sOkxdo/0.jpg)](https://youtu.be/TDfz1sOkxdo?t=0s)
 ## Homework
 - HW1-CLA
@@ -16,5 +16,5 @@ ZEDBOARD
   - StopWatch
   - Timer
   - Alarm
-
+  - Video(YouTube)<br>
 [![Video Label](http://img.youtube.com/vi/ZQL5lWWz970/0.jpg)](https://youtu.be/ZQL5lWWz970?t=0s)
