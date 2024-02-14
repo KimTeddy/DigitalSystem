@@ -7,8 +7,10 @@ ZEDBOARD
   - Video(YouTube)<br>
   [![Video Label](http://img.youtube.com/vi/TDfz1sOkxdo/0.jpg)](https://youtu.be/TDfz1sOkxdo?t=0s)
 ## Homework
-- HW1-CLA
-  - FAx4 + CLA
+- HW1-CLA [https://blog.naver.com/teddy_02/223353123937](https://blog.naver.com/teddy_02/223353123937)
+  - 4bit Carry Look Ahead circuit
+  - 16bit Carry Look Ahead circuit
+  - Verify add16 & cla16 simultaneously
 - HW2-UART
   - Transmit TX
   - Receive RX
